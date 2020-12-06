@@ -27,7 +27,8 @@ import {
 const App: () => React$Node = () => {
   return (
       <View style={styles.container}>
-        <Text style={styles.text}>Hello!!!</Text>
+        <View style={styles.yellowView} />
+        <View style={styles.blueView} />
       </View>
   );
 };
@@ -35,12 +36,14 @@ const App: () => React$Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
-  text: {
-    color: 'white'
+  yellowView: {
+    backgroundColor: 'yellow',
+    flex: 1
+  },
+  blueView: {
+    backgroundColor: 'blue',
+    flex: 3
   }
 });
 
