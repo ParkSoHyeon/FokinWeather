@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  geolocation.swift
 //  FokinWeather
 //
-//  Created by 박소현 on 2020/12/08.
+//  Created by 박소현 on 2020/12/09.
 //
 
 import Foundation

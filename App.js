@@ -9,6 +9,7 @@
 import React from 'react';
 import {Alert} from 'react-native';
 import Loading from './Loading';
+import Weather from './Weather';
 import axios from 'axios';
 import Geolocation from 'react-native-geolocation-service';
 
@@ -19,8 +20,11 @@ export default class extends React.Component {
         isLoading: true,
     };
     getWeather = async (latitude, longitude) => {
-        const {data} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`);
+        const {data} = await axios.get(
+            `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+        );
         console.log(`data: ${JSON.stringify(data)}`);
+        this.setState({ isLoading: false, temp: data.main.temp });
     };
     getLocation = async () => {
         try {
@@ -31,7 +35,7 @@ export default class extends React.Component {
                     console.log(`longitude: ${longitude}`);
                     console.log(`latitude: ${latitude}`);
                     this.getWeather(latitude, longitude);
-                    this.setState({isLoading: false});
+
                 },
                 (error) => {
                     console.error(error);
@@ -49,7 +53,7 @@ export default class extends React.Component {
     }
 
     render(): React$Node {
-        const {isLoading} = this.state;
-        return isLoading ? <Loading/> : null;
+        const { isLoading, temp } = this.state;
+        return isLoading ? <Loading/> : <Weather temp={Math.round(temp)} />;
     }
 }
