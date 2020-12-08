@@ -5,12 +5,17 @@ import {
     Text
 } from 'react-native';
 import PropTypes from 'prop-types'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function Weather({ temp, condition }) {
     return (
       <View style={styles.container}>
-          <Text>{condition}</Text>
-          <Text>{temp}</Text>
+          <View style={styles.halfContainer}>
+              <MaterialCommunityIcons size={96} name="weather-lightning-rainy" />
+              <Text style={styles.temp}>{temp}°</Text>
+          </View>
+          <View style={styles.halfContainer}>
+          </View>
       </View>
     );
 }
@@ -30,6 +35,14 @@ Weather.propTypes = {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    temp: {
+        fontSize: 42
+    },
+    halfContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
